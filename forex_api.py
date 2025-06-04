@@ -2,6 +2,7 @@ from flask import Flask, jsonify
 import requests
 import xml.etree.ElementTree as ET
 from datetime import datetime, timedelta
+import os  # Necesario para leer el puerto asignado por Render
 
 app = Flask(__name__)
 
@@ -42,5 +43,7 @@ def get_forex_news():
     except Exception as e:
         return jsonify({"error": str(e)})
 
+# Esta línea asegura que Render asigne correctamente el puerto y el host
 if __name__ == '__main__':
-    app.run(debug=True)
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host='0.0.0.0', port=port)
