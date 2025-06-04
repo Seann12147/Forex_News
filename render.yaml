@@ -1,0 +1,7 @@
+services:
+  - type: web
+    name: forex-news-api
+    env: python
+    buildCommand: ""
+    startCommand: python forex_api.py
+    plan: free
